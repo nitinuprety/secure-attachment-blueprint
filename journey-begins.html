@@ -1,0 +1,322 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Secure Attachment - In-Depth Guide</title>
+  <meta name="description" content="An in-depth, readable guide to secure attachment: what it is, how to develop it, daily practices, and practical tools." />
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: #111318;
+      --ink: #e9edf1;
+      --muted: #b7c0c9;
+      --accent: #7bd389;
+      --accent-2: #8bb8ff;
+      --border: #20242c;
+      --ring: rgba(123, 211, 137, 0.45);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f8fb;
+        --card: #ffffff;
+        --ink: #0f172a;
+        --muted: #4b5563;
+        --accent: #0ea5e9;
+        --accent-2: #16a34a;
+        --border: #e5e7eb;
+        --ring: rgba(14,165,233,0.35);
+        --shadow: 0 10px 25px rgba(2,6,23,0.08);
+      }
+    }html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--ink);
+  background: radial-gradient(1200px 700px at 10% 0%, rgba(123,211,137,0.06), transparent 60%),
+              radial-gradient(900px 600px at 90% -10%, rgba(139,184,255,0.08), transparent 55%),
+              var(--bg);
+  line-height: 1.6;
+}
+
+/* Layout */
+.wrapper { display: grid; grid-template-columns: 300px 1fr; gap: 28px; max-width: 1200px; margin: 0 auto; padding: 24px; }
+aside { position: sticky; top: 16px; align-self: start; }
+
+/* Card */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); }
+
+/* Header / Hero */
+.hero { padding: 28px; margin-bottom: 12px; }
+.title { font-size: clamp(28px, 4vw, 44px); margin: 0 0 8px; letter-spacing: -0.02em; }
+.subtitle { margin: 0; color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); }
+
+/* Actions */
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.btn { appearance: none; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); color: var(--ink); padding: 10px 14px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: transform .04s ease, box-shadow .2s ease, border-color .2s ease; }
+.btn:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.18); border-color: var(--accent); }
+.btn:active { transform: translateY(1px); }
+.btn.primary { border-color: var(--accent); box-shadow: 0 0 0 6px var(--ring); }
+
+/* TOC */
+.toc { padding: 16px; }
+.toc h3 { margin: 6px 0 10px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.toc a { display: block; padding: 8px 10px; color: var(--ink); text-decoration: none; border-radius: 10px; border: 1px solid transparent; }
+.toc a:hover { background: rgba(123,211,137,0.08); border-color: var(--border); }
+.toc a.active { background: rgba(139,184,255,0.12); border-color: var(--border); }
+
+/* Content */
+main { padding: 0; }
+section { padding: 22px 24px; margin-bottom: 16px; }
+section h2 { margin: 6px 0 12px; font-size: clamp(22px, 2.4vw, 30px); }
+section h3 { margin: 20px 0 8px; font-size: clamp(18px, 1.8vw, 22px); }
+p { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+
+.callout { border-left: 4px solid var(--accent); background: linear-gradient(90deg, rgba(123,211,137,0.12), transparent 40%); padding: 12px 14px; border-radius: 12px; }
+
+.grid-two { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+.tip { border: 1px solid var(--border); border-radius: 14px; padding: 14px; }
+
+.kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.88em; padding: 2px 6px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 6px; background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.06)); }
+
+/* Table */
+.table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; border: 1px solid var(--border); }
+.table th, .table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.table th { text-align: left; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); }
+.table tr:last-child td { border-bottom: none; }
+
+.footer-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  font-weight: 600;
+}
+
+/* Footer */
+footer { text-align: center; color: var(--muted); font-size: 14px; padding: 28px 12px 40px; }
+
+/* Responsive */
+@media (max-width: 980px) {
+  .wrapper { grid-template-columns: 1fr; }
+  aside { position: static; order: -1; }
+  .toc { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+  .toc a { padding: 10px; }
+  .grid-two { grid-template-columns: 1fr; }
+}
+
+/* Print */
+@media print {
+  body { background: #fff; color: #000; }
+  .wrapper { display: block; max-width: 800px; }
+  aside, .actions { display: none !important; }
+  .card { border: none; box-shadow: none; }
+  section { break-inside: avoid; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <aside>
+      <div class="card hero" role="banner">
+        <h1 class="title">Your Path Starts Here</h1>
+        <p class="subtitle">A practical, step-by-step guide to understanding and building a more secure way of relating.</p>
+        <div class="actions">
+          <button class="btn" id="homeBtn" title="Go to Home Page">Home</button>
+          <button class="btn" id="printBtn" title="Save or print as PDF">Print / Save as PDF</button>
+        </div>
+      </div>
+      <nav class="card toc" aria-label="Table of contents">
+        <h3>Contents</h3>
+        <a href="#what-is" class="toc-link">What is Secure Attachment?</a>
+        <a href="#becoming-secure" class="toc-link">How to Become More Secure</a>
+        <a href="#step-1" class="toc-link">1. Build Self‑Awareness</a>
+        <a href="#step-2" class="toc-link">2. Heal Core Beliefs</a>
+        <a href="#step-3" class="toc-link">3. Learn Secure Communication</a>
+        <a href="#step-4" class="toc-link">4. Regulate Your Nervous System</a>
+        <a href="#step-5" class="toc-link">5. Surround Yourself with Secure People</a>
+        <a href="#secure-me" class="toc-link">Daily “Secure Me” Practice</a>
+        <a href="#bottom-line" class="toc-link">Bottom Line</a>
+      </nav>
+    </aside><main>
+  <section id="what-is" class="card" aria-labelledby="h-what-is">
+    <h2 id="h-what-is">What Is a Secure Attachment Style?</h2>
+    <p>A <strong>secure attachment style</strong> means you can trust others, feel comfortable with emotional closeness, and handle distance or conflict without extreme anxiety or withdrawal. It’s not about being perfectly calm; it’s about being able to <strong>self‑regulate</strong> and respond rather than react.</p>
+    <ul>
+      <li>Believe you are worthy of love</li>
+      <li>Trust that others will be there for you</li>
+      <li>Communicate openly</li>
+      <li>Handle disagreements without panic or stonewalling</li>
+    </ul>
+    <div class="callout" role="note">
+      <strong>Key idea:</strong> Security is the capacity to pause, soothe, reflect, and then choose a response—especially when emotions run high.
+    </div>
+  </section>
+
+  <section id="becoming-secure" class="card" aria-labelledby="h-becoming-secure">
+    <h2 id="h-becoming-secure">How to Become More Secure</h2>
+    <p>If you notice <em>anxious</em> or <em>avoidant</em> patterns, use the steps below to shift toward security. Progress comes from small, repeated practices.</p>
+  </section>
+
+  <section id="step-1" class="card" aria-labelledby="h-step-1">
+    <h2 id="h-step-1">Step 1 - Build Self-Awareness</h2>
+    <ul>
+      <li><strong>Notice triggers</strong> → moments you feel fear of abandonment or the urge to pull away.</li>
+      <li>Keep a <strong>journal</strong> of situations, thoughts, and body sensations.</li>
+      <li>Ask: <em>“Am I reacting to the present or a past wound?”</em></li>
+    </ul>
+    <div class="grid-two">
+      <div class="tip">
+        <h3>Reframe Example</h3>
+        <p><span class="kbd">Unhelpful</span>: “She hasn’t texted back; she’s losing interest.”</p>
+        <p><span class="kbd">Secure</span>: “She’s probably busy; silence isn’t necessarily rejection.”</p>
+      </div>
+      <div class="tip">
+        <h3>Journal Prompts</h3>
+        <ul>
+          <li>What happened just before I felt activated?</li>
+          <li>What story did my mind tell?</li>
+          <li>What does my body feel like (0–10 intensity)?</li>
+          <li>What would <em>present‑me</em> do vs. <em>past‑me</em>?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="step-2" class="card" aria-labelledby="h-step-2">
+    <h2 id="h-step-2">Step 2 – Heal Core Beliefs</h2>
+    <p>Insecure patterns often rest on painful core beliefs. Challenge and update them deliberately.</p>
+    <table class="table" role="table" aria-label="Core belief reframes">
+      <thead>
+        <tr><th>Old Belief</th><th>Supportive Belief</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>“I'm too much.”</td><td>“I'm worthy of love as I am.”</td></tr>
+        <tr><td>“People always leave.”</td><td>“Some people stay and care consistently.”</td></tr>
+      </tbody>
+    </table>
+    <div class="grid-two" style="margin-top:12px">
+      <div class="tip">
+        <h3>Helpful Methods</h3>
+        <ul>
+          <li>Attachment-focused therapy</li>
+          <li>Inner child work</li>
+          <li>Guided self-reflection & values work</li>
+        </ul>
+      </div>
+      <div class="tip">
+        <h3>Micro-Practice</h3>
+        <p>When an old belief appears, pause and say: <em>“Thank you, protector. I’ve got this now.”</em> Then state the supportive belief out loud.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="step-3" class="card" aria-labelledby="h-step-3">
+    <h2 id="h-step-3">Step 3 – Learn Secure Communication</h2>
+    <ul>
+      <li>Use <strong>“I” statements</strong> to own your feelings.</li>
+      <li>Express needs calmly—no blame, shaming, or ultimatums.</li>
+      <li>Be specific and constructive so others know how to meet you.</li>
+    </ul>
+    <div class="tip">
+      <h3>Example</h3>
+      <p><strong>Instead of:</strong> “You never care about me.”</p>
+      <p><strong>Try:</strong> “I feel anxious when I don’t hear from you; can we agree on checking in?”</p>
+    </div>
+  </section>
+
+  <section id="step-4" class="card" aria-labelledby="h-step-4">
+    <h2 id="h-step-4">Step 4 – Regulate Your Nervous System</h2>
+    <p>Self‑soothing helps you choose responses that align with your values.</p>
+    <div class="grid-two">
+      <div class="tip">
+        <h3>Techniques</h3>
+        <ul>
+          <li><strong>Breathing:</strong> inhale 4s, exhale 6s (repeat 1–3 minutes).</li>
+          <li><strong>Grounding:</strong> 5 things you see, 4 touch, 3 hear.</li>
+          <li><strong>Delay reaction:</strong> wait 20 minutes before sending that emotional message.</li>
+        </ul>
+      </div>
+      <div class="tip">
+        <h3>Rapid Reset</h3>
+        <p>Place a hand on your chest and one on your belly. Breathe slowly and say, “Right now, I am safe.”</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="step-5" class="card" aria-labelledby="h-step-5">
+    <h2 id="h-step-5">Step 5 – Surround Yourself with Secure People</h2>
+    <ul>
+      <li>Choose consistent, emotionally available, reliable relationships.</li>
+      <li>In dating, prefer calm steadiness over intensity and chaos.</li>
+      <li>Let their stability retrain your nervous system toward safety.</li>
+    </ul>
+  </section>
+
+  <section id="secure-me" class="card" aria-labelledby="h-secure-me">
+    <h2 id="h-secure-me">Daily “Secure Me” Rehearsal</h2>
+    <ol>
+      <li><em>If I were already secure</em>, how would I approach today?</li>
+      <li>In this situation, what would a secure person do?</li>
+    </ol>
+    <div class="callout"><strong>Tip:</strong> Act secure in tiny ways—your brain learns by doing.</div>
+  </section>
+
+  <section id="bottom-line" class="card" aria-labelledby="h-bottom-line">
+    <h2 id="h-bottom-line">Bottom Line</h2>
+    <p>Secure attachment is <strong>learned</strong>. It’s not about being perfect—it’s about trusting yourself to handle closeness and distance without losing your sense of safety.</p>
+  </section>
+
+  <footer>
+      <section class="card" aria-label="Page navigation" style="display:flex; gap:10px; align-items:center; justify-content:space-between;">
+        <a class="btn linkish" href="index.html" aria-label="Go to Home">Home</a>
+        <div style="display:flex; gap:10px;">
+          <a class="btn primary linkish" href="journey-deeper.html" aria-label="Go to Advanced">Continue Your Journey →</a>
+        </div>
+      </section>
+  </footer>
+</main>
+
+  </div>  <script>
+    // Smooth scroll for TOC links
+    document.querySelectorAll('.toc a').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          history.pushState(null, '', id);
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Highlight active TOC link on scroll
+    const headings = Array.from(document.querySelectorAll('main section[id]'));
+    const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+    const byId = id => tocLinks.find(l => l.getAttribute('href') === '#' + id);
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const link = byId(entry.target.id);
+          if (link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+
+    headings.forEach(h => observer.observe(h));
+
+    // Print / Save as PDF
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+    document.getElementById('homeBtn').addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+  </script></body>
+</html>

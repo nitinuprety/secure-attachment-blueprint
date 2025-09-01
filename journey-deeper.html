@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Secure Attachment - Deeper Journey</title>
+  <meta name="description" content="A deeper exploration of secure attachment: advanced practices, real-life examples, and guidance for long-term growth." />
+  <style>
+    /* Keep same theme */
+    :root {
+      --bg: #0b0c10;
+      --card: #111318;
+      --ink: #e9edf1;
+      --muted: #b7c0c9;
+      --accent: #7bd389;
+      --accent-2: #8bb8ff;
+      --border: #20242c;
+      --ring: rgba(123, 211, 137, 0.45);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f8fb;
+        --card: #ffffff;
+        --ink: #0f172a;
+        --muted: #4b5563;
+        --accent: #0ea5e9;
+        --accent-2: #16a34a;
+        --border: #e5e7eb;
+        --ring: rgba(14,165,233,0.35);
+        --shadow: 0 10px 25px rgba(2,6,23,0.08);
+      }
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+      color: var(--ink);
+      background: radial-gradient(1200px 700px at 10% 0%, rgba(123,211,137,0.06), transparent 60%),
+                  radial-gradient(900px 600px at 90% -10%, rgba(139,184,255,0.08), transparent 55%),
+                  var(--bg);
+      line-height: 1.6;
+    }
+    .wrapper { display: grid; grid-template-columns: 300px 1fr; gap: 28px; max-width: 1200px; margin: 0 auto; padding: 24px; }
+    aside { position: sticky; top: 16px; align-self: start; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); }
+    .hero { padding: 28px; margin-bottom: 12px; }
+    .title { font-size: clamp(28px, 4vw, 44px); margin: 0 0 8px; letter-spacing: -0.02em; }
+    .subtitle { margin: 0; color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .btn { appearance: none; text-decoration: unset; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); color: var(--ink); padding: 10px 14px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: transform .04s ease, box-shadow .2s ease, border-color .2s ease; }
+    .btn:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.18); border-color: var(--accent); }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary { border-color: var(--accent); box-shadow: 0 0 0 6px var(--ring); }
+    .toc { padding: 16px; }
+    .toc h3 { margin: 6px 0 10px; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .toc a { display: block; padding: 8px 10px; color: var(--ink); text-decoration: none; border-radius: 10px; border: 1px solid transparent; }
+    .toc a:hover { background: rgba(123,211,137,0.08); border-color: var(--border); }
+    .toc a.active { background: rgba(139,184,255,0.12); border-color: var(--border); }
+    main { padding: 0; }
+    section { padding: 22px 24px; margin-bottom: 16px; }
+    section h2 { margin: 6px 0 12px; font-size: clamp(22px, 2.4vw, 30px); }
+    section h3 { margin: 20px 0 8px; font-size: clamp(18px, 1.8vw, 22px); }
+    p { margin: 10px 0; }
+    ul, ol { padding-left: 20px; }
+    .callout { border-left: 4px solid var(--accent); background: linear-gradient(90deg, rgba(123,211,137,0.12), transparent 40%); padding: 12px 14px; border-radius: 12px; }
+    .grid-two { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+    .tip { border: 1px solid var(--border); border-radius: 14px; padding: 14px; }
+    .table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; border: 1px solid var(--border); }
+    .table th, .table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .table th { text-align: left; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); }
+    .table tr:last-child td { border-bottom: none; }
+    footer { text-align: center; color: var(--muted); font-size: 14px; padding: 28px 12px 40px; }
+    @media (max-width: 980px) {
+      .wrapper { grid-template-columns: 1fr; }
+      aside { position: static; order: -1; }
+      .toc { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+      .grid-two { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <aside>
+      <div class="card hero" role="banner">
+        <h1 class="title">Going Deeper</h1>
+        <p class="subtitle">Advanced insights, practices, and examples to help you embody secure attachment in real life.</p>
+        <div class="actions">
+          <button class="btn" id="homeBtn">Home</button>
+          <button class="btn" id="printBtn">Print / PDF</button>
+        </div>
+      </div>
+      <nav class="card toc">
+        <h3>Contents</h3>
+        <a href="#advanced-beliefs">Deep Core Beliefs</a>
+        <a href="#conflict">Handling Conflict Securely</a>
+        <a href="#love-languages">Love Languages in Practice</a>
+        <a href="#case-studies">Case Studies & Examples</a>
+        <a href="#daily-habits">Daily Habits for Security</a>
+        <a href="#growth">Long-Term Growth</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="advanced-beliefs" class="card">
+        <h2>Deep Core Beliefs</h2>
+        <p>Secure attachment isn’t just about behavior—it’s about transforming the inner stories you live by. These stories shape how you see yourself and others.</p>
+        <table class="table">
+          <thead>
+            <tr><th>Insecure Belief</th><th>Secure Reframe</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>“If I show my needs, I’ll be abandoned.”</td><td>“Expressing needs builds closeness when done respectfully.”</td></tr>
+            <tr><td>“Closeness means losing myself.”</td><td>“I can be connected and still keep my identity.”</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="conflict" class="card">
+        <h2>Handling Conflict Securely</h2>
+        <p>Conflict is unavoidable. What matters is how you repair and reconnect.</p>
+        <div class="grid-two">
+          <div class="tip">
+            <h3>Secure Moves</h3>
+            <ul>
+              <li>Pause before reacting.</li>
+              <li>Use calm, clear words (“I feel… when…”).</li>
+              <li>Invite repair (“Can we try again?”).</li>
+            </ul>
+          </div>
+          <div class="tip">
+            <h3>Example</h3>
+            <p><strong>Instead of:</strong> “You don’t care about me at all.”</p>
+            <p><strong>Try:</strong> “I felt hurt when I didn’t get a response. Can we talk about it?”</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="love-languages" class="card">
+        <h2>Love Languages in Practice</h2>
+        <p>Understanding how you and others give/receive love makes relationships more secure.</p>
+        <ul>
+          <li><strong>Words of affirmation:</strong> Try daily encouragement.</li>
+          <li><strong>Acts of service:</strong> Small thoughtful gestures build safety.</li>
+          <li><strong>Quality time:</strong> Undistracted presence fosters trust.</li>
+          <li><strong>Physical touch:</strong> Gentle, welcomed touch grounds connection.</li>
+          <li><strong>Gifts:</strong> Symbolic reminders that you are remembered.</li>
+        </ul>
+      </section>
+
+      <section id="case-studies" class="card">
+        <h2>Case Studies & Examples</h2>
+        <p>Seeing secure behaviors in real scenarios makes them easier to apply.</p>
+        <div class="callout">
+          <strong>Example:</strong> Emma, once anxious, practiced pausing before sending worried texts. Over months, she learned her partner’s silence didn’t equal rejection.
+        </div>
+        <div class="callout">
+          <strong>Example:</strong> Raj, avoidant, started sharing one small vulnerable thing daily. Gradually, he discovered intimacy could feel safe.
+        </div>
+      </section>
+
+      <section id="daily-habits" class="card">
+        <h2>Daily Habits for Security</h2>
+        <ul>
+          <li>Morning reflection: “If I were secure today, how would I act?”</li>
+          <li>Practice co-regulation: breathe with a friend/partner for 1 minute.</li>
+          <li>End your day with gratitude journaling.</li>
+        </ul>
+      </section>
+
+      <section id="growth" class="card">
+        <h2>Long-Term Growth</h2>
+        <p>Secure attachment is a lifelong practice. Progress is not linear, but consistency rewires your nervous system for safety and trust.</p>
+        <div class="callout"><strong>Remember:</strong> Every step you take—even imperfect ones—teaches your brain security is possible.</div>
+      </section>
+
+      <footer>
+        <section class="card" aria-label="Page navigation" style="display:flex; gap:10px; align-items:center; justify-content:space-between;">
+          <a class="btn linkish" href="journey-begins.html" aria-label="Back to Beginning Journey">← Back to Beginning</a>
+          <div style="display:flex; gap:10px;">
+            <a class="btn linkish" href="index.html" aria-label="Go to Home">Home</a>
+            <a class="btn primary linkish" href="journey-advanced.html" aria-label="Go to Advanced">Continue Your Journey →</a>
+          </div>
+        </section>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('.toc a').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const id = a.getAttribute('href');
+        const target = document.querySelector(id);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Buttons
+    document.getElementById('homeBtn').onclick = () => window.location.href = 'index.html';
+    document.getElementById('backBtn').onclick = () => window.location.href = 'start-your-journey.html';
+    document.getElementById('printBtn').onclick = () => window.print();
+  </script>
+</body>
+</html>

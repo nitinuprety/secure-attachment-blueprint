@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>14-Day Secure Attachment Challenge</title>
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: #111318;
+      --ink: #e9edf1;
+      --muted: #b7c0c9;
+      --accent: #7bd389;   /* green accent */
+      --accent-2: #8bb8ff; /* blue accent */
+      --border: #20242c;
+      --ring: rgba(123, 211, 137, 0.45);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f8fb;
+        --card: #ffffff;
+        --ink: #0f172a;
+        --muted: #4b5563;
+        --accent: #0ea5e9;
+        --accent-2: #16a34a;
+        --border: #e5e7eb;
+        --ring: rgba(14,165,233,0.35);
+        --shadow: 0 10px 25px rgba(2,6,23,0.08);
+      }
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fafb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #eef2f7;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: #2c5282;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1rem;
+      color: #4a5568;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); margin-bottom: 0.8rem; }
+    .btn {
+      appearance: none; border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+      color: var(--ink); padding: 10px 14px; border-radius: 12px; cursor: pointer;
+      font-weight: 600; transition: transform .04s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .btn:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.18); border-color: var(--accent); }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary { border-color: var(--accent); box-shadow: 0 0 0 6px var(--ring); }
+    .btn.linkish { text-decoration: none; display: inline-block; }
+    .day-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      padding: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+    .day-card:hover {
+      transform: translateY(-4px);
+    }
+    .day-card h2 {
+      font-size: 1.2rem;
+      color: #2c5282;
+      margin-bottom: 0.8rem;
+    }
+    .prompt, .practice {
+      margin-bottom: 0.8rem;
+    }
+    .prompt strong, .practice strong {
+      color: #2f855a;
+    }
+    .checkbox {
+      display: flex;
+      align-items: center;
+      margin-top: 0.8rem;
+    }
+    .checkbox input {
+      margin-right: 0.5rem;
+    }
+    .congrats-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem 1rem;
+    }
+
+    .congrats-card {
+        max-width: 700px;
+        background: #fff;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .congrats-card h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #256f4f;
+        margin-bottom: 1rem;
+    }
+
+    .congrats-card p {
+        color: #444;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .congrats-card .quote {
+        font-style: italic;
+        color: #666;
+        margin-top: 1rem;
+    }
+
+    .share {
+        margin-top: 2rem;
+    }
+
+    .share-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .share-btn {
+        display: inline-block;
+        margin-top: 1rem;
+        background: #256f4f;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 1rem;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.3s ease;
+    }
+
+    .share-btn:hover {
+        background: #1d5a40;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #718096;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌿 14-Day Secure Attachment Challenge</h1>
+    <p>Each day, you’ll explore a gentle journaling prompt and a micro-practice. 
+       Take your time, be kind to yourself, and notice the small shifts along the way. 
+       Healing is a journey, not a race. 💙</p>
+  </header>
+
+  <main>
+    <!-- Day 1 -->
+    <div class="day-card">
+      <h2>Day 1: Begin with Awareness</h2>
+      <div class="prompt"><strong>Journaling:</strong> Recall a moment you felt safe with someone. What made you feel that way?</div>
+      <div class="practice"><strong>Practice:</strong> Place your hand over your heart and breathe deeply 3 times.</div>
+      <div class="checkbox"><input type="checkbox" id="day1"/><label for="day1">Completed</label></div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-card">
+      <h2>Day 2: Notice Your Inner Voice</h2>
+      <div class="prompt"><strong>Journaling:</strong> Write down one negative belief you carry about love.</div>
+      <div class="practice"><strong>Practice:</strong> Replace it with a softer belief and whisper it to yourself.</div>
+      <div class="checkbox"><input type="checkbox" id="day2"/><label for="day2">Completed</label></div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-card">
+      <h2>Day 3: Ground in the Body</h2>
+      <div class="prompt"><strong>Journaling:</strong> How does your body react when you feel disconnected?</div>
+      <div class="practice"><strong>Practice:</strong> Try box breathing: Inhale 4, hold 4, exhale 4, hold 4.</div>
+      <div class="checkbox"><input type="checkbox" id="day3"/><label for="day3">Completed</label></div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="day-card">
+      <h2>Day 4: Childhood Echoes</h2>
+      <div class="prompt"><strong>Journaling:</strong> Write one need you had as a child that wasn’t met.</div>
+      <div class="practice"><strong>Practice:</strong> Give yourself that reassurance now. Say: “I’m here for you.”</div>
+      <div class="checkbox"><input type="checkbox" id="day4"/><label for="day4">Completed</label></div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="day-card">
+      <h2>Day 5: Pause Before Reacting</h2>
+      <div class="prompt"><strong>Journaling:</strong> When did you last overreact in fear of losing someone?</div>
+      <div class="practice"><strong>Practice:</strong> Next time, take 3 breaths before replying.</div>
+      <div class="checkbox"><input type="checkbox" id="day5"/><label for="day5">Completed</label></div>
+    </div>
+
+    <!-- Day 6 -->
+    <div class="day-card">
+      <h2>Day 6: Rewrite the Story</h2>
+      <div class="prompt"><strong>Journaling:</strong> What story do you tell yourself about why people leave?</div>
+      <div class="practice"><strong>Practice:</strong> Write a kinder version of that story.</div>
+      <div class="checkbox"><input type="checkbox" id="day6"/><label for="day6">Completed</label></div>
+    </div>
+
+    <!-- Day 7 -->
+    <div class="day-card">
+      <h2>Day 7: Celebrate Wins</h2>
+      <div class="prompt"><strong>Journaling:</strong> What's one way you've grown in relationships?</div>
+      <div class="practice"><strong>Practice:</strong> Appreciate yourself in the mirror today.</div>
+      <div class="checkbox"><input type="checkbox" id="day7"/><label for="day7">Completed</label></div>
+    </div>
+
+    
+    <div class="day-card">
+      <h2>🌱 REMEMBER!</h2>
+      <div class="prompt"><strong>This is not about perfection, but gentle progress. Every checkmark is a step closer to security. 💚</strong></div>
+    </div>
+
+    <!-- Day 8 -->
+    <div class="day-card">
+      <h2>Day 8: Practice Boundaries</h2>
+      <div class="prompt"><strong>Journaling:</strong> Write about a time you said yes when you wanted to say no.</div>
+      <div class="practice"><strong>Practice:</strong> Practice a gentle “no” today.</div>
+      <div class="checkbox"><input type="checkbox" id="day8"/><label for="day8">Completed</label></div>
+    </div>
+
+    <!-- Day 9 -->
+    <div class="day-card">
+      <h2>Day 9: Communication Shift</h2>
+      <div class="prompt"><strong>Journaling:</strong> Write about a conflict where you wish you had spoken differently.</div>
+      <div class="practice"><strong>Practice:</strong> Try one “I feel” statement today.</div>
+      <div class="checkbox"><input type="checkbox" id="day9"/><label for="day9">Completed</label></div>
+    </div>
+
+    <!-- Day 10 -->
+    <div class="day-card">
+      <h2>Day 10: Build Trust Slowly</h2>
+      <div class="prompt"><strong>Journaling:</strong> Who in your life feels consistent and safe?</div>
+      <div class="practice"><strong>Practice:</strong> Share one small truth with them today.</div>
+      <div class="checkbox"><input type="checkbox" id="day10"/><label for="day10">Completed</label></div>
+    </div>
+
+    <!-- Day 11 -->
+    <div class="day-card">
+      <h2>Day 11: Gratitude Shift</h2>
+      <div class="prompt"><strong>Journaling:</strong> Write 3 things you appreciate about someone you love.</div>
+      <div class="practice"><strong>Practice:</strong> Tell them one of these today.</div>
+      <div class="checkbox"><input type="checkbox" id="day11"/><label for="day11">Completed</label></div>
+    </div>
+
+    <!-- Day 12 -->
+    <div class="day-card">
+      <h2>Day 12: Safe Space Within</h2>
+      <div class="prompt"><strong>Journaling:</strong> Where do you feel most at peace in your life?</div>
+      <div class="practice"><strong>Practice:</strong> Create a 5-minute ritual in that space.</div>
+      <div class="checkbox"><input type="checkbox" id="day12"/><label for="day12">Completed</label></div>
+    </div>
+
+    <!-- Day 13 -->
+    <div class="day-card">
+      <h2>Day 13: Reparent Yourself</h2>
+      <div class="prompt"><strong>Journaling:</strong> What words did you most long to hear as a child?</div>
+      <div class="practice"><strong>Practice:</strong> Say those words to yourself now.</div>
+      <div class="checkbox"><input type="checkbox" id="day13"/><label for="day13">Completed</label></div>
+    </div>
+
+    <!-- Day 14 -->
+    <div class="day-card">
+      <h2>Day 14: Step into Security</h2>
+      <div class="prompt"><strong>Journaling:</strong> Imagine your future self with secure attachment. How do they live, love, and connect?</div>
+      <div class="practice"><strong>Practice:</strong> Do one action today as if you are already that self.</div>
+      <div class="checkbox"><input type="checkbox" id="day14"/><label for="day14">Completed</label></div>
+    </div>
+  </main>
+
+  <footer>
+
+    <section class="congrats-section">
+        <div class="congrats-card">
+            <h2>🎉 Congratulations!</h2>
+            <p>
+            You've completed your 14-day journey toward secure attachment.  
+            Every reflection, every breath, every act of kindness to yourself  
+            has planted a seed of healing. This is not the end, but the beginning  
+            of deeper peace and connection. 🌿
+            </p>
+            <p class="quote">
+            “The roots you've planted in these two weeks will keep growing  
+            into strength and love.”
+            </p>
+
+            <div class="share">
+            <p>💌 Now, share this journey with your loved ones — someone you care about may need this gentle path too.</p>
+            
+            <div class="share-buttons">
+                <button class="share-btn" onclick="copyLink()">📋 Copy Link</button>
+                <a class="share-btn" href="https://wa.me/?text=I%20just%20completed%20a%2014-day%20healing%20journey!%20Check%20this%20out:%20https://nitinuprety.github.io/secure-attachment-blueprint" target="_blank">💬 WhatsApp</a>
+                <a class="share-btn" href="mailto:?subject=14-Day Healing Journey&body=I just completed a 14-day journey toward secure attachment. You might love this too: https://nitinuprety.github.io/secure-attachment-blueprint">✉️ Email</a>
+            </div>
+            <a class="btn linkish" href="index.html" aria-label="Go to Home">Go To Home</a>
+            </div>
+        </div>
+    </section>
+  </footer>
+    <script>
+        function copyLink() {
+        const link = "https://nitinuprety.github.io/secure-attachment-blueprint"; // fixed link here
+        navigator.clipboard.writeText(link).then(() => {
+            alert("✅ Link copied! Share it with your loved ones.");
+        });
+        }
+    </script>
+</body>
+</html>
