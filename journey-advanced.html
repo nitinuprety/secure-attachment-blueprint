@@ -105,6 +105,24 @@
     /* Footer */
     footer { text-align: center; color: var(--muted); font-size: 14px; padding: 28px 12px 40px; }
 
+.copyright {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: #f9fafb; /* soft gray background */
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.copyright a.copyright-link {
+  text-decoration: underline;
+  color: #6b7280; /* blue-600 */
+  transition: color 0.3s ease;
+}
+
+.copyright a.copyright-link:hover {
+  color: #1d4ed8; /* darker blue on hover */
+}
     /* Responsive */
     @media (max-width: 980px) {
       .wrapper { grid-template-columns: 1fr; }
@@ -281,21 +299,23 @@
       </section>
 
       <!-- Footer nav inside main -->
+
+      <footer>
       <section class="card" aria-label="Page navigation" style="display:flex; gap:10px; align-items:center; justify-content:space-between;">
           <a class="btn linkish" href="journey-deeper.html" aria-label="Back to Deeper Journey">← Back to Deeper</a>
         <div style="display:flex; gap:10px;">
         <a class="btn linkish" href="index.html" aria-label="Go to Home">Home</a>
           <a class="btn primary linkish" href="challenge.html" aria-label="Open 7-Day Challenge">Start 7-Day Challenge →</a>
         </div>
-      </section>
-
-      <!-- Optional sticky CTA on scroll -->
-      <!-- <div class="sticky-cta" aria-hidden="true">
-        <a class="btn primary linkish" href="challenge.html">Continue: 7-Day Challenge →</a>
-      </div> -->
-
-      <footer>
-        <p>&copy; 2025 Secure Journey Project. All rights reserved.</p>
+      </section>      
+      <div class="copyright">
+        <p>
+          © 2025 
+          <a href="https://github.com/nitinuprety" target="_blank" rel="noopener noreferrer" class="copyright-link">
+            Nitin Uprety
+          </a>
+        </p>
+      </div>
       </footer>
     </main>
   </div>

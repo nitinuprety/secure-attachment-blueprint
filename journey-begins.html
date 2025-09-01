@@ -96,6 +96,24 @@ ul, ol { padding-left: 20px; }
   border: 1px solid #ccc;
   font-weight: 600;
 }
+.copyright {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: #f9fafb; /* soft gray background */
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.copyright a.copyright-link {
+  text-decoration: underline;
+  color: #6b7280; /* blue-600 */
+  transition: color 0.3s ease;
+}
+
+.copyright a.copyright-link:hover {
+  color: #1d4ed8; /* darker blue on hover */
+}
 
 /* Footer */
 footer { text-align: center; color: var(--muted); font-size: 14px; padding: 28px 12px 40px; }
@@ -278,7 +296,15 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 28px
         <div style="display:flex; gap:10px;">
           <a class="btn primary linkish" href="journey-deeper.html" aria-label="Go to Advanced">Continue Your Journey →</a>
         </div>
-      </section>
+      </section>                
+      <div class="copyright">
+        <p>
+          © 2025 
+          <a href="https://github.com/nitinuprety" target="_blank" rel="noopener noreferrer" class="copyright-link">
+            Nitin Uprety
+          </a>
+        </p>
+      </div>
   </footer>
 </main>
 
